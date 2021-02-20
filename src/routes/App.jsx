@@ -1,20 +1,40 @@
-import React from 'react'
-import {BrowserRouter, Route, Router, Switch} from 'react-router-dom';
-import Register from '../pages/Register';
-import Login from '../pages/Login';
+import React, { useContext } from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import CRMProvider, { CRMContext } from "../context/authContext";
+
+import Layout from "../container/Layout";
+// import Register from '../pages/Register';
+import Login from "../pages/Login";
 import Home from '../pages/Home';
+import Register from '../pages/Register';
+import Clients from '../pages/Clients';
+import Products from '../pages/Products';
+import Orders from '../pages/Orders';
+import User from '../pages/User';
 import NotFound from '../pages/NotFound';
 
-const App = () => {
+const App = (props) => {
+  const [auth, setAuth] = useContext(CRMContext);
 
-  <BrowserRouter>
-    <Switch>
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/create-account' component={Register} />
-      <Router exact path='/home' component={Home} />
-      <Router component={NotFound} /> 
-    </Switch>
-  </BrowserRouter>
-}
+  return (
+    <CRMProvider value={[auth, setAuth]}>
+      <BrowserRouter>
+        <Layout>
+          <Switch>
+            <Route exact path="/" component={Login} />
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/new-user" component={Register} />
+            <Route exact path="/clients" component={Clients} />
+            <Route exact path="/products" component={Products} />
+            <Route exact path="/orders" component={Orders} />
+            <Route exact path="/user" component={User} />
+            <Route component={NotFound} />
+
+          </Switch>
+        </Layout>
+      </BrowserRouter>
+    </CRMProvider>
+  );
+};
 
 export default App;
