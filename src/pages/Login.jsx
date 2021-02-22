@@ -6,7 +6,7 @@ import { CRMContext } from "../context/authContext";
 
 const Login = () => {
   const [auth, setAuth] = useContext(CRMContext);
-  const [credentials, setCredentials] = useState({email: 'correo1@correo.com', password: '123456'});
+  const [credentials, setCredentials] = useState({email: 'admin@correo.com', password: '123456'});
   const history = useHistory();
 
   const handleSubmit = async (event) => {
@@ -21,19 +21,16 @@ const Login = () => {
       localStorage.setItem("token", token);
       setAuth({ token: token, auth: true });
 
-      swal.fire("Welcome to CRM", "You have logged in", "success");
-
       history.push("/clients");
     } catch (error) {
       swal.fire({
         icon: 'error',
-        title: "Oops ...",
         text: error.response.data.message,
       });
     }
   };
 
-  const handleData = (event) =>
+  const handleChange = (event) =>
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
 
   return (
@@ -47,7 +44,7 @@ const Login = () => {
             name="email"
             placeholder="Your email"
             required
-            onChange={handleData}
+            onChange={handleChange}
             id='email'
             value={credentials.email}
           />
@@ -59,7 +56,7 @@ const Login = () => {
             name="password"
             placeholder="Your password"
             required
-            onChange={handleData}
+            onChange={handleChange}
             id='password'
             value={credentials.password}
           />

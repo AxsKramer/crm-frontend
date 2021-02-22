@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { CRMContext } from "../context/authContext";
 
 const Aside = (props) => {
@@ -14,18 +14,18 @@ const Aside = (props) => {
 
       <nav className="nav-menu">
         <NavLink
-          exact
+          
           to="/home"
           activeStyle={{
             fontWeight: "bold",
             color: "#00487C",
           }}
         >
-          <i class="fas fa-house-user icon"></i>
+          <i className="fas fa-house-user icon"></i>
           Home
         </NavLink>
         <NavLink
-          exact
+          
           to="/clients"
           activeStyle={{
             fontWeight: "bold",
@@ -36,7 +36,7 @@ const Aside = (props) => {
           Clients
         </NavLink>
         <NavLink
-          exact
+          
           to="/products"
           activeStyle={{
             fontWeight: "bold",
@@ -47,7 +47,7 @@ const Aside = (props) => {
           Products
         </NavLink>
         <NavLink
-          exact
+          
           to="/orders"
           activeStyle={{
             fontWeight: "bold",
@@ -58,7 +58,7 @@ const Aside = (props) => {
           Orders
         </NavLink>
         <NavLink
-          exact
+          
           to="/user"
           activeStyle={{
             fontWeight: "bold",
