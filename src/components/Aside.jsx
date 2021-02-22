@@ -14,7 +14,6 @@ const Aside = (props) => {
 
       <nav className="nav-menu">
         <NavLink
-          
           to="/home"
           activeStyle={{
             fontWeight: "bold",
@@ -23,6 +22,16 @@ const Aside = (props) => {
         >
           <i className="fas fa-house-user icon"></i>
           Home
+        </NavLink>
+        <NavLink
+          to="users"
+          activeStyle={{
+            fontWeight: "bold",
+            color: "#00487C",
+          }}
+        >
+          <i className="fas fa-user-plus icon"></i>
+          New User
         </NavLink>
         <NavLink
           
