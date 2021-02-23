@@ -5,13 +5,17 @@ import CRMProvider, { CRMContext } from "../context/authContext";
 import Layout from "../container/Layout";
 import Login from "../pages/Login";
 import Home from '../pages/Home';
+
 import Clients from '../pages/Clients';
 import NewClient from '../components/NewClient';
 import EditClient from '../components/EditClient';
+
 import Products from '../pages/Products';
+import EditProduct from '../components/EditProduct';
+import NewProduct from '../components/NewProduct';
+
 import Orders from '../pages/Orders';
-import NewUser from '../components/NewUser';
-// import Users from '../pages/Users';
+import NewUser from '../pages/NewUser';
 import NotFound from '../pages/NotFound';
 
 const App = (props) => {
@@ -29,6 +33,8 @@ const App = (props) => {
             <Route exact path="/clients/client/new" component={NewClient} />
             <Route exact path="/clients/client/edit/:clientId" component={EditClient} />
             <Route exact path="/products" component={Products} />
+            <Route exact path="/products/product/new" component={NewProduct} />
+            <Route exact path="/products/product/edit/:productId" component={EditProduct} />
             <Route exact path="/orders" component={Orders} />
             <Route component={NotFound} />
 

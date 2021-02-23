@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {useHistory, useParams} from 'react-router-dom';
 import FormClient from './FormClient';
 import httpRequest from '../network/http';
+import {swalFail, swalSuccess} from '../utils/swalResponse';
 
 
 const EditClient = () => {
@@ -34,7 +35,11 @@ const EditClient = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     httpRequest.updateData(`clients/${clientId}`, client, null)
-      .then(() => history.push('/clients'));
+      .then((response) => {
+        swalSuccess(response.message);
+        history.push('/clients')
+      })
+      .catch(error => swalFail(error.message));
   }
 
   const formValidation = () => {

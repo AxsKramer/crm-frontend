@@ -1,8 +1,15 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react';
+import httpRequest from '../network/http';
+
 
 const Orders = () => {
+
+
   return (  
-    <h1>Orders</h1>
+    <>
+
+
+    </>
   );
 }
  

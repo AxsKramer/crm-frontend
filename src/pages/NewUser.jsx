@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import { CRMContext } from '../context/authContext';
-import FormUser from './FormUser';
+import FormUser from '../components/FormUser';
 import httpRequest from '../network/http';
+import {swalFail, swalSuccess} from '../utils/swalResponse';
 
 const NewUser = () => {
 
@@ -21,10 +22,11 @@ const NewUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     httpRequest.createData('users/create-account', user, null)
-      .then(() => {
-        setUser(initialState);
+      .then(response => {
+        swalSuccess(response.message)
         history.push('/clients');
-      });
+      })
+      .catch(error => swalFail(error.message));
   }
 
   if(!auth.auth && (localStorage.getItem('token') === auth.token)){

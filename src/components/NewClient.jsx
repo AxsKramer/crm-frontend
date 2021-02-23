@@ -3,6 +3,7 @@ import {useHistory} from 'react-router-dom';
 import { CRMContext } from '../context/authContext';
 import FormClient from './FormClient';
 import httpRequest from '../network/http';
+import {swalFail, swalSuccess} from '../utils/swalResponse';
 
 const NewClient = () => {
 
@@ -33,7 +34,11 @@ const NewClient = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     httpRequest.createData('clients', client, null)
-      .then(() => history.push('/clients'));
+      .then((response) => {
+        swalSuccess(response.message);
+        history.push('/clients')
+      })
+      .catch(error => swalFail(error.message));
   }
 
   if(!auth.auth && (localStorage.getItem('token') === auth.token) || auth.auth && (localStorage.getItem('token') !== auth.token) ){

@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom';
 import swal from 'sweetalert2';
 import httpRequest from '../network/http';
+import {swalFail, swalSuccess} from '../utils/swalResponse';
 
 const Client = ({client, setClients}) => {
 
@@ -9,20 +10,24 @@ const Client = ({client, setClients}) => {
 
   const deleteClient = (clientId) => {
     swal.fire({
-      title: 'Are you sure?',
-      text: 'This client is going to be disabled',
+      text: 'Do you want to delete this client ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, disable it ',
+      confirmButtonText: 'Yes, delete it ',
       cancelButtonText: 'Cancel'
     }).then(result => {
       if(result.value){
-        httpRequest.deleteById(`clients/${clientId}`, null).then(()=> {
-          httpRequest.getAll('clients', null)
-            .then(data => setClients(data.clients));
-        })
+        httpRequest.deleteById(`clients/${clientId}`, null)
+          .then(response => {
+            swalSuccess(response.message);
+            httpRequest.getAll('clients', null)
+              .then(data => {
+                setClients(data.clients)
+              })
+              .catch(error => swalFail(error.message))
+          })
       }
     })
   }
@@ -57,7 +62,7 @@ const Client = ({client, setClients}) => {
                 onClick={() => deleteClient(_id)}
             >
             Delete
-            <i className="fas fa-times" />
+            <i class="far fa-trash-alt"></i>
           </button>
         </div>
       </li>
