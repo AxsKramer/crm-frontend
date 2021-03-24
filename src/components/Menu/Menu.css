@@ -1,0 +1,35 @@
+.nav-menu{
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.nav-menu a{
+  padding: 0;
+  margin: 2rem 0;
+  font-size: 1.6rem;
+}
+
+.nav-menu a span{
+  display: none;
+}
+
+.nav-menu a .icon{
+  font-size: 2rem;
+}
+
+@media only screen and (min-width: 766px){
+  .nav-menu a span{
+    display: flex;
+  }
+  .nav-menu a{
+    font-family: var(--fontText);
+    display: grid;
+    grid-template-columns: 30% 70%;
+    justify-items: start;
+    align-items: center;
+  }
+  .nav-menu a .icon{
+    justify-self: center;
+  }
+}

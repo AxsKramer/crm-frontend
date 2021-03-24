@@ -1,0 +1,12 @@
+.header {
+  background-color: var(--blue);
+  padding: 2rem 0;
+  color: white;
+  box-shadow: 0 3px 8px #333;
+}
+.grid-header{
+  display: grid;
+  grid-template-columns: 60% 40%;
+  justify-items: center;
+  align-items: center;
+}

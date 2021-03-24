@@ -1,0 +1,21 @@
+.li-orders-details{
+  width: 100%;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  border: 1px solid #333;
+}
+
+.grid-order-details{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(50%, 100%));
+}
+
+.order-details{
+  padding-left: .5rem;
+}
+
+@media only screen and (min-width: 766px){
+  .grid-order-details{
+    grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+  }
+}

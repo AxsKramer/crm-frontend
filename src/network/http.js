@@ -1,11 +1,9 @@
 import axios from 'axios';
 
-
-
 class HttpRequest{
 
   constructor(){
-    this.hostAPI = 'http://localhost:3000/api';
+    this.hostAPI = 'https://crm-api-backend.herokuapp.com/api';
   }
 
   async getAll(endpoint, authorization) {

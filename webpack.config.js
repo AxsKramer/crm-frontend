@@ -2,12 +2,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-
 module.exports = {
-  entry: {index: path.resolve(__dirname, 'src', 'index.js')},
+  entry: path.resolve(__dirname, 'src', 'index.js'),
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'js/index.bundle.js',
+    filename: 'js/[name].bundle.js',
     publicPath: '/'
   },
   resolve: {
@@ -61,7 +60,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, 'src', 'public', 'index.html'),
+      template: path.resolve(__dirname, 'public', 'index.html'),
       filename: './index.html'
     }),
     new MiniCssExtractPlugin({

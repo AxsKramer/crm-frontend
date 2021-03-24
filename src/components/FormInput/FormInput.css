@@ -1,0 +1,33 @@
+.field {
+  padding: .5rem 0;
+  margin: 2rem 0;
+  width: 100%;
+}
+.field label {
+  font-weight: bold;
+  font-family: var(--fontBoton);
+  font-size: 1.4rem;
+  display: none;
+}
+.field input:not([type="submit"]){
+  padding: 1.5rem;
+  border: 1px solid #e1e1e1;
+  outline: none;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+@media only screen and (min-width: 766px){
+  .field{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    align-items: center;
+    justify-items: center;
+  }
+  .field label {
+    display: block;
+  }
+  .field input:not([type="submit"]){
+  }
+
+}

@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
-import { CRMContext } from "../context/authContext";
+import { CRMContext } from "../../context/authContext";
 import { useHistory } from "react-router-dom";
+import './Header.css';
 
-const Header = (props) => {
+const Header = () => {
   const history = useHistory();
   const [auth, setAuth] = useContext(CRMContext);
 
@@ -17,8 +18,8 @@ const Header = (props) => {
       <div className={auth.auth ? 'grid-header': ''}>
         <h1>CRM Client Manager</h1>
         {auth.auth ? (
-          <button type="button" onClick={logout} className='btn bg-red'>
-            LOGOUT  
+          <button type="button" onClick={logout} className='btn bg-red btn-text-space btn-logout' >
+            <span className='span-text'>LOGOUT</span>
             <i className="fas fa-sign-out-alt"></i>
           </button>
         ) : null}
