@@ -4,8 +4,10 @@
   "description": "MERN Project (Frontend).",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "start": "webpack serve --mode development"
+    "build": "webpack --config webpack.config.js",
+    "build:dev": "webpack --config webpack.config.dev.js",
+    "dev": "webpack serve --config webpack.config.dev.js",
+    "start": "serve ./dist"
   },
   "repository": {
     "type": "git",
@@ -32,11 +34,16 @@
     "@babel/preset-env": "^7.12.17",
     "@babel/preset-react": "^7.12.13",
     "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.2",
+    "css-minimizer-webpack-plugin": "^1.3.0",
+    "dotenv-webpack": "^7.0.2",
     "file-loader": "^6.2.0",
     "html-loader": "^2.0.0",
     "html-webpack-plugin": "^5.1.0",
     "mini-css-extract-plugin": "^1.3.8",
+    "serve": "^11.3.2",
+    "terser-webpack-plugin": "^5.1.1",
     "webpack": "^5.23.0",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"
