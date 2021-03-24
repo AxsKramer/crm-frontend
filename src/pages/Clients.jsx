@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import {CRMContext} from '../context/authContext.js';
-import {Link, useHistory} from 'react-router-dom';
-import Client from '../components/Client';
+import {useHistory} from 'react-router-dom';
+import Client from '../components/Client/Client';
 import httpRequest from '../network/http.js';
-import { swalFail, swalSuccess } from '../utils/swalResponse.js';
-
-const Clients = (props) => {
+import { swalFail, } from '../utils/swalResponse.js';
+import Spinner from '../components/Spinner/Spinner';
+import RoundButton from '../components/RoundButton/RoundButton';
+const Clients = () => {
 
   const [clients, setClients] = useState([]);
   const [auth, setAuth] = useContext(CRMContext);
@@ -18,7 +19,7 @@ const Clients = (props) => {
     if(auth.token !== ''){
       const getClientsFromAPI = async () => {
         try {
-          const data = await httpRequest.getAll('clients', null);
+          const data = await httpRequest.getAll('clients', auth);
           setClients(data.clients);
         } catch (error) {
           swalFail(error.message);
@@ -28,26 +29,28 @@ const Clients = (props) => {
         }
       }
       getClientsFromAPI();
+    }else{
+      history.push('/');
     }
 
   },[])
 
-  if(!clients.length) return <h2>No clients</h2>
-
   return (  
-    <>
+    <div className='container'>
       <h2>Clients</h2>
-      <Link to='/clients/client/new' className='btn-circular bg-blue pos-absolute' title='New client'>
-        <i className="fas fa-user-plus new-user-icon "></i>
-      </Link>
-      <ul>
+      <RoundButton fontawesome='fas fa-user-plus' url='/clients/client/new' title='New client'/>
+        {!clients && <h2>No clients</h2>}
         {
-          clients.length
-            ? clients.map(client => <Client key={client._id} client={client} setClients={setClients} />)
-            : <h2>No clients</h2>
+          clients.length > 0
+           ?(<ul>
+            {
+            clients.map(client => <Client key={client._id} client={client} setClients={setClients} />)
+            
+            }
+          </ul>
+          )  : <Spinner />
         }
-      </ul>
-    </>
+    </div>
   );
 }
  

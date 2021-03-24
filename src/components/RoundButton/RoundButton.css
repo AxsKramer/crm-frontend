@@ -1,0 +1,17 @@
+.round-btn{
+  border-radius: 50%;
+  padding: 1rem 1rem;
+  animation: btn-effect .5s ease;
+  outline: none;
+  border: none;
+  transition: all .4s;
+  position: fixed;
+  bottom: 1rem;
+  right: 2rem;
+}
+
+.icon{
+  font-size: 2.2rem;
+  padding: 0;
+  margin: 0;
+}

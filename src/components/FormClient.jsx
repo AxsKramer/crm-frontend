@@ -1,72 +1,96 @@
-import React from "react";
+import React, {useState} from "react";
+import FormInput from "./FormInput/FormInput";
+import SubmitButton from "./SubmitButton/SubmitButton";
+import httpRequest from '../network/http';
+import {swalFail, swalSuccess} from '../utils/swalResponse';
 
-const FormClient = ({ handleSubmit, handleChange, disabled, client, isEditMode }) => {
+const FormClient = ({client, setClient, isEditMode}) => {
+  const [disabled, setDisabled] = useState(true);
+  const { name, lastName, email, company, phone } = client;
+  
+  const formValidation = () => {
+    const {name, lastName, email, company, phone} = client;
+    const isValid = !name.length || !lastName.length || !email.length || !company.length || !phone.length;
+    setDisabled(isValid);
+  }
 
-  const {name, lastName, email, company, phone} = client;
+  const handleChange = (e) => {
+    setClient({...client, [e.target.name]: e.target.value.trim()});
+    formValidation();
+  };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if(isEditMode){
+      httpRequest.updateData(`clients/${clientId}`, client, auth)
+      .then((response) => {
+        swalSuccess(response.message);
+        history.push('/clients')
+      })
+      .catch(error => swalFail(error.message));
+    }else{
+      httpRequest.createData('clients', client, auth, null)
+        .then((response) => {
+          swalSuccess(response.message);
+          history.push('/clients')
+        })
+        .catch(error => swalFail(error.message));
+    }
+  }
+  
   return (
     <form onSubmit={handleSubmit}>
-      <div className="field">
-        <label htmlFor="name">Name: </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="Client´s name "
-          onChange={handleChange}
-          value={name}
-        />
-      </div>
-      <div className="field">
-        <label htmlFor="lastName">Last Name: </label>
-        <input
-          type="text"
-          id="lastName"
-          name="lastName"
-          placeholder="Client´s last name"
-          onChange={handleChange}
-          value={lastName}
-        />
-      </div>
-      <div className="field">
-        <label htmlFor="email">Email: </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Client´s email"
-          onChange={handleChange}
-          value={email}
-        />
-      </div>
-      <div className="field">
-        <label htmlFor="company">Company: </label>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          placeholder="Client´s company"
-          onChange={handleChange}
-          value={company}
-        />
-      </div>
-      <div className="field">
-        <label htmlFor="phone">Phone: </label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="Client´s phone number"
-          onChange={handleChange}
-          value={phone}
-        />
-      </div>
-      <input
-        type="submit"
-        className="btn btn-block bg-blue"
-        value= {isEditMode ? 'SAVE' : 'ADD CLIENT'}
-        disabled={disabled}
+      <FormInput
+        label="Name: "
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Name"
+        handleChange={handleChange}
+        value={name}
+        required
       />
+      <FormInput
+        label="Last Name: "
+        type="text"
+        id="lastName"
+        name="lastName"
+        placeholder="Last Name"
+        handleChange={handleChange}
+        value={lastName}
+        required
+      />
+      <FormInput
+        label="Email: "
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Email"
+        handleChange={handleChange}
+        value={email}
+        required
+      />
+      <FormInput
+        label="Company: "
+        type="text"
+        id="company"
+        name="company"
+        placeholder="Company"
+        handleChange={handleChange}
+        value={company}
+        required
+      />
+      <FormInput
+        label="Phone: "
+        type="text"
+        id="phone"
+        name="phone"
+        placeholder="Phone"
+        handleChange={handleChange}
+        value={phone}
+        required
+      />
+      <SubmitButton value={isEditMode ? "SAVE" : "ADD CLIENT"} disabled={disabled} />
     </form>
   );
 };

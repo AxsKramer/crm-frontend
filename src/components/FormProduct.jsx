@@ -1,67 +1,88 @@
-import React from "react";
+import React, {useContext} from "react";
+import { useHistory, useParams } from "react-router-dom";
+import httpRequest from "../network/http";
+import { swalFail, swalSuccess } from "../utils/swalResponse";
+import {CRMContext} from '../context/authContext';
+import FormInput from '../components/FormInput/FormInput';
+import SubmitButton from './SubmitButton/SubmitButton';
 
-const FormProduct = ({handleChange, handleSubmit, readFile, product, isEditMode}) => {
+const FormProduct = ({product, readFile, isEditMode, setProduct, file}) => {
+  const history = useHistory();
+  const [auth, setAuth] = useContext(CRMContext);
+  const params = useParams();
+  const handleChange = (e) => setProduct({ ...product, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("name", product.name);
+    formData.append("price", product.price);
+    formData.append("stock", product.stock);
+    formData.append("image", file);
+
+    if(isEditMode){
+      httpRequest.updateData(`products/${params.productId}`, formData, auth, true)
+      .then((response) => {
+        swalSuccess(response.message);
+        history.push("/products");
+      })
+      .catch((error) => swalFail(error.message));
+    }else{
+      httpRequest.createData("products", formData, auth, true)
+        .then((response) => {
+          swalSuccess(response.message);
+          history.push("/products");
+        })
+        .catch((error) => swalFail(error.message));
+    }
+
+  };
   return (
     <form onSubmit={handleSubmit}>
-      <div className="field">
-        <label htmlFor="product">Product: </label>
-        <input
-          type="text"
-          id="product"
-          name="name"
-          placeholder="Name´s product "
-          onChange={handleChange}
-          value={product.name}
-          required
-        />
-      </div>
-
-      <div className="field">
-        <label htmlFor="price">Price:</label>
-        <input
-          type="number"
-          name="price"
-          min="0"
-          step="0.1"
-          placeholder="price"
-          id="price"
-          onChange={handleChange}
-          value={product.price}
-          required
-        />
-      </div>
-
-      <div className="field">
-        <label htmlFor="image">Image:</label>
-        <input
-          type="file"
-          name="image"
-          id="image"
-          onChange={readFile}
-          required
-          accept='image/jpg, image/jpeg, image/png'
-        />
-      </div>
-
-      <div className="field">
-        <label htmlFor="stock">Stock: </label>
-        <input
-          type="number"
-          id="stock"
-          min="0"
-          step="1"
-          name="stock"
-          placeholder="quantity of products "
-          onChange={handleChange}
-          value={product.stock}
-          required
-        />
-      </div>
-      <input
-        type="submit"
-        className="btn btn-block bg-blue"
-        value={isEditMode ? "SAVE" : "ADD PRODUCT"}
+      <FormInput
+        label='Product: '
+        type="text"
+        id="product"
+        name="name"
+        placeholder="Product "
+        handleChange={handleChange}
+        value={product.name}
+        required
       />
+      <FormInput
+        label='Price: '
+        type="number"
+        name="price"
+        min="0"
+        step="0.1"
+        placeholder="Price"
+        id="price"
+        handleChange={handleChange}
+        value={product.price}
+        required
+      />
+      <FormInput
+        label='Image: '
+        type="file"
+        name="image"
+        id="image"
+        handleChange={readFile}
+        required
+        accept='image/jpg, image/jpeg, image/png'
+      />
+      <FormInput
+        label='Stock: '
+        type="number"
+        id="stock"
+        min="0"
+        step="1"
+        name="stock"
+        placeholder="quantity of products "
+        handleChange={handleChange}
+        value={product.stock}
+        required
+      />
+      <SubmitButton value={isEditMode ? "SAVE" : "ADD PRODUCT"}/>
     </form>
   );
 };

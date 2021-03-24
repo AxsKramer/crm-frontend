@@ -1,0 +1,17 @@
+.li-container {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 1fr;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.client-details p{
+  font-size: 1.6rem;
+}
+
+.actions{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
