@@ -1,6 +1,7 @@
 .login {
   width: 80%;
-  height: 50%;
+  min-height: 50%;
+  max-height: fit-content;
   margin: 0 auto;
   padding: 2rem;
   background-color: var(--grisClaro);

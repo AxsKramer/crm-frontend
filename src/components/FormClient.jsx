@@ -1,11 +1,13 @@
 import React, {useState} from "react";
+import {useHistory} from 'react-router-dom';
 import FormInput from "./FormInput/FormInput";
 import SubmitButton from "./SubmitButton/SubmitButton";
 import httpRequest from '../network/http';
 import {swalFail, swalSuccess} from '../utils/swalResponse';
 
-const FormClient = ({client, setClient, isEditMode}) => {
+const FormClient = ({client, setClient, isEditMode, clientId, auth}) => {
   const [disabled, setDisabled] = useState(true);
+  const history = useHistory();
   const { name, lastName, email, company, phone } = client;
   
   const formValidation = () => {
@@ -34,7 +36,7 @@ const FormClient = ({client, setClient, isEditMode}) => {
           swalSuccess(response.message);
           history.push('/clients')
         })
-        .catch(error => swalFail(error.message));
+        .catch(error => swalFail(error.response.data.message));
     }
   }
   

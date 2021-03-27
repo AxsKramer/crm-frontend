@@ -13,26 +13,20 @@ const Clients = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if(!auth.auth){
-      history.push('/');
-    }
-    if(auth.token !== ''){
+    if(auth.token !== '' && auth.auth){
       const getClientsFromAPI = async () => {
         try {
           const data = await httpRequest.getAll('clients', auth);
           setClients(data.clients);
         } catch (error) {
           swalFail(error.message);
-          if (error.response.status === 500) {
-            history.push("/");
-          }
         }
       }
       getClientsFromAPI();
     }else{
       history.push('/');
     }
-
+    
   },[])
 
   return (  
@@ -40,16 +34,13 @@ const Clients = () => {
       <h2>Clients</h2>
       <RoundButton fontawesome='fas fa-user-plus' url='/clients/client/new' title='New client'/>
         {!clients && <h2>No clients</h2>}
+        <ul>
         {
           clients.length > 0
-           ?(<ul>
-            {
-            clients.map(client => <Client key={client._id} client={client} setClients={setClients} />)
-            
-            }
-          </ul>
-          )  : <Spinner />
+            ? clients.map((client, index) => <Client key={index} client={client} clients={clients} setClients={setClients} />)
+            : <Spinner />
         }
+        </ul>
     </div>
   );
 }

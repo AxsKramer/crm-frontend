@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, Fragment} from 'react'
 import swal from 'sweetalert2';
 import httpRequest from '../../network/http';
 import {swalFail, swalSuccess} from '../../utils/swalResponse';
@@ -7,7 +7,7 @@ import ClientDetails from '../ClientDetails/ClientDetails';
 import ClientButtons from '../ClientButtons/ClientButtons';
 import './Client.css';
 
-const Client = ({client, setClients}) => {
+const Client = ({client, clients, setClients}) => {
   const [auth, setAuth] = useContext(CRMContext);
 
   const {_id} = client;
@@ -25,24 +25,23 @@ const Client = ({client, setClients}) => {
       if(result.value){
         httpRequest.deleteById(`clients/${clientId}`, auth)
           .then(response => {
-            swalSuccess(response.message);
-            httpRequest.getAll('clients', auth)
-              .then(data => setClients(data.clients))
-              .catch(error => swalFail(error.message))
+            const newClients = clients.filter(aclient => aclient._id !== clientId);
+            setClients(newClients);
+            swalSuccess(response.message)
           })
-          .catch(error => swalFail(error.message))
+          .catch(error => swalFail(error.response.message))
       }
     })
   };
 
   return (
-    <>
+    <Fragment>
       <li className="li-container">
         <ClientDetails client={client} />
         <ClientButtons id={_id}  deleteClient={deleteClient}/>
       </li>
       <hr/>
-    </>
+    </Fragment>
   )
 }
 

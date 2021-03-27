@@ -8,7 +8,7 @@ const ProductDetails = ({product}) => {
         <img
           className="img-product"
           src={`https://crm-api-backend.herokuapp.com/static/${image}`}
-          alt="image"
+          alt="Product Image"
         />
       ) : null}
       <p className="text-product">{name}</p>

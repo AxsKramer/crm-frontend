@@ -1,7 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom';
 
-const ClientButtons = ({id}) => {
+const ClientButtons = ({id, deleteClient}) => {
   return (
     <div className="actions">
       <Link

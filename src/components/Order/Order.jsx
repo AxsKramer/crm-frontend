@@ -8,7 +8,7 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import OrderTable from '../OrderTable/OrderTable';
 import './Order.css';
 
-const Order = ({ order }) => {
+const Order = ({ order, orders, setOrders }) => {
   const history = useHistory();
   const [auth, setAuth] = useContext(CRMContext);
   const client = order.client;
@@ -29,6 +29,8 @@ const Order = ({ order }) => {
             swalSuccess(response.message);
             history.push('/orders');
           }).catch(error => swalFail(error.message))
+        const newOrders = orders.filter(ord => ord._id !== id );
+        setOrders(newOrders);
       }
     });
   }

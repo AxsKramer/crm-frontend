@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import httpRequest from "../network/http";
 import { swalFail } from "../utils/swalResponse";
 import { CRMContext } from "../context/authContext";
+import jwtparse from '../utils/parseJwt';
 
 import FormSearchProduct from "../components/FormSearchProduct/FormSearchProduct";
 import ProductsFound from "../components/ProductFound/ProductsFound";
@@ -14,15 +15,23 @@ const NewOrder = () => {
   const [client, setClient] = useState({});
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState([]);
+  const [filterProducts, setfilterProducts] = useState([]);
   const [total, setTotal] = useState(0);
+  const [user, setUser] = useState('');
   const [auth, setAuth] = useContext(CRMContext);
+  
 
   useEffect(() => {
+    const user = jwtparse(auth.token)
+    setUser(user.id);
+
     httpRequest.getById(`clients/${params.clientId}`, auth)
-      .then((response) => setClient(response.client))
-      .catch((error) => swalFail(error.message));
+    .then((response) => setClient(response.client))
+    .catch((error) => swalFail(error.message));
+    
     updateTotal();
-  }, [products]);
+  }, [products, filterProducts]);
+
 
   const readSearchData = (e) => setSearch(e.target.value);
 
@@ -46,27 +55,30 @@ const NewOrder = () => {
           <p>
             <strong>Total:</strong> $ {total}{" "}
           </p>
-          <MakeOrder total={total} products={products} auth={auth} />
+          <MakeOrder total={total} products={products} auth={auth} user={user} />
         </ClientDetails>
         <FormSearchProduct
           search={search}
           auth={auth}
           products={products}
+          filterProducts={filterProducts}
+          setSearch={setSearch}
+          setfilterProducts={setfilterProducts}
           setProducts={setProducts}
           readSearchData={readSearchData}
-        />
-        <ul>
-          {products.map((product, index) => (
-            <ProductsFound
-              key={product.product}
-              product={product}
-              products={products}
-              index={index}
-              setProducts={setProducts}
-            />
-          ))}
-        </ul>
+          />
       </div>
+      <ul className='products-order'>
+        {products.map((product, index) => (
+          <ProductsFound
+            key={product.product}
+            product={product}
+            products={products}
+            index={index}
+            setProducts={setProducts}
+          />
+        ))}
+      </ul>
     </div>
   );
 };

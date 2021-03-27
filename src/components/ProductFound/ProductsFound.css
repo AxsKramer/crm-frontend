@@ -1,3 +1,7 @@
+.li-form-product{
+  margin-top: 2rem;
+  padding: .5rem
+}
 .li-form-product-div{
   display: flex;
   justify-content: space-around;
@@ -6,4 +10,12 @@
 
 .li-form-product-div p{
   font-size: 1.5rem;
+}
+
+.li-table-product{
+  width: 100%;
+  font-size: 1.5rem;
+}
+.filtered-product-img{
+  width: 80px;
 }

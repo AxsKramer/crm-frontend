@@ -1,0 +1,22 @@
+.sub-container{
+  margin-top: 2rem;
+}
+
+.container-clients{
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  height: fit-content;
+}
+
+.details{
+  padding: 1rem 2rem;
+  margin: .5rem 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  border: 1px solid black;
+  box-shadow: 1px 1px 3px 1px #333;
+  min-width: 250px;
+  max-width: 280px;
+}
