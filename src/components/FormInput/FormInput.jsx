@@ -1,7 +1,7 @@
 import React from "react";
 import './FormInput.css';
 
-const FormInput = ({label, type, name, handleChange, value, placeholder,id, ...otherprops }) => {
+const FormInput = ({label ='', type, name, handleChange, value, placeholder,id, ...otherprops }) => {
   return (
     <div className="field">
       <label htmlFor={id}>{label}</label>
@@ -12,7 +12,6 @@ const FormInput = ({label, type, name, handleChange, value, placeholder,id, ...o
         onChange={handleChange}
         id={id}
         value={value}
-        required
         {...otherprops}
       />
     </div>

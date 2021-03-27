@@ -24,10 +24,25 @@ const FormProducts = ({product,products, index, setProducts}) => {
 
   return (
     <li className='li-form-product'>
-      <div className='li-form-product-div'>
-        <p><strong>Product:</strong> {product.name}</p>
-        <p><strong>Price:</strong> $ {product.price} USD</p>
-      </div>
+      <table className='li-table-product' border="1">
+        <thead>
+          <tr>
+            <th>Image </th>
+            <th>Product </th>
+            <th>Price $(USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <img className='filtered-product-img' src={`https://crm-api-backend.herokuapp.com/static/${product.image}`} alt={product.name} />
+            </td>
+            <td>{product.name} </td>
+            <td>{product.price} </td>
+          </tr>
+
+        </tbody>
+      </table>
       <ProductsFoundActionButtons 
         subtractProducts={subtractProducts}
         increaseProducts={increaseProducts}

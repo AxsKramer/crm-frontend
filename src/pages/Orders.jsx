@@ -28,7 +28,7 @@ const Orders = () => {
       <ul>
         {
           orders.length > 0
-            ? orders.map(order => <Order key={order._id} order={order} />)
+            ? orders.map(order => <Order key={order._id} order={order} orders={orders} setOrders={setOrders} />)
             : <Spinner />
         }
       </ul>

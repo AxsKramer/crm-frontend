@@ -5,7 +5,7 @@ import FormUser from '../components/FormUser';
 
 const NewUser = () => {
 
-  const initialState = { name: '', email: '', password: '',}
+  const initialState = { name: '', email: '', password: '', role: false}
   const history = useHistory();
   const [auth, setAuth] = useContext(CRMContext);
   const [user, setUser] = useState(initialState);
@@ -16,6 +16,8 @@ const NewUser = () => {
     }
   },[]);
 
+  const toggleCheckbox = (e) => setUser({...user, role: !user.role});
+
   const handleChange = (e) => setUser({...user, [e.target.name]: e.target.value});
 
   return (
@@ -24,6 +26,7 @@ const NewUser = () => {
       <FormUser
         user={user}
         handleChange={handleChange} 
+        toggleCheckbox={toggleCheckbox}
       />
     </div>
   )

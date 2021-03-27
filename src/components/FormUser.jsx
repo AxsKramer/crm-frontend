@@ -3,8 +3,9 @@ import Form from "../components/Form/Form";
 import FormInput from "../components/FormInput/FormInput";
 import SubmitButton from './SubmitButton/SubmitButton';
 
-const FormUser = ({ handleChange, user }) => (
-  <Form isNewUser>
+const FormUser = ({ handleChange, toggleCheckbox, user }) => (
+  
+  <Form isNewUser user={user}>
     <FormInput
       label="Name"
       type="text"
@@ -34,6 +35,15 @@ const FormUser = ({ handleChange, user }) => (
       handleChange={handleChange}
       value={user.password}
       required
+    />
+    <FormInput
+      label="Is Admin?"
+      type="checkbox"
+      id="isAdmin"
+      name="isAdmin"
+      handleChange={toggleCheckbox}
+      value={user.role}
+      checked={user.role}
     />
     <SubmitButton value="ADD USER" />
   </Form>

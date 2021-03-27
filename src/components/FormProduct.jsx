@@ -26,14 +26,14 @@ const FormProduct = ({product, readFile, isEditMode, setProduct, file}) => {
         swalSuccess(response.message);
         history.push("/products");
       })
-      .catch((error) => swalFail(error.message));
+      .catch((error) => swalFail(error.response.data.message));
     }else{
       httpRequest.createData("products", formData, auth, true)
         .then((response) => {
           swalSuccess(response.message);
           history.push("/products");
         })
-        .catch((error) => swalFail(error.message));
+        .catch((error) => swalFail(error.response.data.message));
     }
 
   };

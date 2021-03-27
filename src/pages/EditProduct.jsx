@@ -28,6 +28,7 @@ const EditProduct = () => {
       <h2>Edit Product</h2>
       <FormProduct 
         product={product}
+        setProduct={setProduct}
         file={file}
         readFile={readFile}
         isEditMode

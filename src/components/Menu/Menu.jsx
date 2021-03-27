@@ -65,6 +65,16 @@ const Menu = () => {
         <i className="fas icon fa-user-cog"></i>
         <span title='Settings'>Settings</span>
       </NavLink>
+      <NavLink
+        to="/restore"
+        activeStyle={{
+          fontWeight: "bold",
+          color: "white",
+        }}
+      >
+        <i className="fas fa-trash-restore icon"></i>
+        <span title='Settings'>Restore</span>
+      </NavLink>
     </nav>
   );
 };

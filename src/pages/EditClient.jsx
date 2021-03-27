@@ -29,6 +29,8 @@ const EditClient = () => {
       <h2>Edit Client</h2>
       <FormClient 
         client={client}
+        clientId={clientId}
+        auth={auth}
         setClient={setClient}
         isEditMode
       />

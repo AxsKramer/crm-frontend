@@ -131,10 +131,27 @@ h1 {
 
 .grid-container-new-order{
   display: grid;
-  grid-template-columns: 30% 20% calc(45% - 6rem);
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
   gap: 2rem;
 }
 
+.products-order{
+  width: 50%;
+  margin: 0 auto;
+}
+.users{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5rem;
+  justify-content: center;
+}
+
+.user-box{
+  max-width: 200px;
+  height: 320px;
+  margin: 0 1rem;
+}
 
 @media only screen and (min-width: 766px){
   .new-item{
@@ -149,5 +166,10 @@ h1 {
   }
   .container{
     width: 80%;
+  }
+  .grid-container-new-order{
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 1fr;
+    gap: 2rem;
   }
 }

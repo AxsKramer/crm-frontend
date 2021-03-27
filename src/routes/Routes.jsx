@@ -4,7 +4,9 @@ import Spinner from '../components/Spinner/Spinner';
 
 const Login = lazy(() => import('../pages/Login/Login'));
 const Home = lazy(() => import('../pages/Home'));
+const Settings = lazy(() => import('../pages/Settings'));
 const NewUser = lazy(() => import('../pages/NewUser'));
+const Restore = lazy(() => import('../pages/Restore/Restore'));
 
 const Clients = lazy(() => import('../pages/Clients'));
 const NewClient = lazy(() => import('../pages/NewClient'));
@@ -22,7 +24,9 @@ const Routes = () => {
     <Suspense fallback={<Spinner />}>
       <Route exact path='/' component={Login} />
       <Route exact path='/home' component={Home} />
+      <Route exact path='/user' component={Settings} />
       <Route exact path='/users' component={NewUser} />
+      <Route exact path='/restore' component={Restore} />
       <Route exact path='/clients' component={Clients} />
       <Route exact path='/clients/client/new' component={NewClient} />
       <Route exact path='/clients/client/edit/:clientId' component={EditClient} />

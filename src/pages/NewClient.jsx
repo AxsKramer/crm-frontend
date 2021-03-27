@@ -17,6 +17,7 @@ const NewClient = () => {
     <div className='new-item'>
       <h2>New Client</h2> 
       <FormClient 
+        auth={auth}
         client={client}
         setClient={setClient}
       />

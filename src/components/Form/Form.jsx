@@ -7,7 +7,7 @@ import { swalFail, swalSuccess } from "../../utils/swalResponse";
 import Spinner from "../Spinner/Spinner";
 import { CRMContext } from "./../../context/authContext";
 
-const Form = ({ children, url, credentials, isNewUser }) => {
+const Form = ({ children, url, credentials, isNewUser, user }) => {
   const [auth, setAuth] = useContext(CRMContext);
   const [isLoading, setisLoading] = useState(false);
   const history = useHistory();
@@ -29,17 +29,21 @@ const Form = ({ children, url, credentials, isNewUser }) => {
           icon: "error",
           text: error.response.data.message,
         });
+        setisLoading(false);
       }
     }
     if (isNewUser) {
-      httpRequest
-        .createData("users/create-account", user, auth, null)
+      const newUser = {
+        ...user,
+        role: user.role ? 'admin': 'user'
+      }
+      httpRequest.createData("users/create-account", newUser, auth, null)
         .then((response) => {
           swalSuccess(response.message);
           setisLoading(false);
           history.push("/clients");
         })
-        .catch((error) => swalFail(error.message));
+        .catch((error) => swalFail(error.response.data.message));
     }
   };
   return (
