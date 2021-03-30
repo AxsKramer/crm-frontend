@@ -23,7 +23,7 @@ const Restore = () => {
         .catch((error) => swalFail(error.response.data.message));
       httpRequest.getAll('clients', auth)
       .then((data) => setClients(data.clients))
-      .catch((error) => swalFail(error.response.data.message));
+      .catch((error) => swalFail(error.response.data.message))
     }else{
       history.push('/');
     }
@@ -41,6 +41,7 @@ const Restore = () => {
     httpRequest.updateData(endpoint, body, auth)
       .then(data => swalSuccess(data.message))
       .catch(error => swalFail(error.response.data.message))
+      .finally(() =>  history.push('/clients'));
   }
 
   return (

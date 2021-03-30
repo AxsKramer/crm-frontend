@@ -17,7 +17,7 @@
 .loggedin{
   display: grid;
   grid-template-columns: 10% 90%;
-  grid-template-rows: 100vh;
+  grid-template-rows: calc(100vh - 88px);
   justify-items: center;
 }
 

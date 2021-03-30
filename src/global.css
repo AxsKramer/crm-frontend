@@ -143,14 +143,14 @@ h1 {
 .users{
   display: flex;
   flex-wrap: wrap;
-  margin-top: 5rem;
   justify-content: center;
 }
 
 .user-box{
-  max-width: 200px;
+  min-width: 250px;
   height: 320px;
-  margin: 0 1rem;
+  margin: 1rem;
+  border: 1px  solid black;
 }
 
 @media only screen and (min-width: 766px){

@@ -8,7 +8,7 @@ import { CRMContext } from "../../context/authContext";
 import './Login.css';
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({email: 'admin@correo.com', password: '123456'});
+  const [credentials, setCredentials] = useState({email: '', password: ''});
   const [auth, setAuth] = useContext(CRMContext);
   const history = useHistory();
   

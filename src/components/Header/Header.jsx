@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <header className={auth.auth ? 'header' : 'header text-center' }>
       <div className={auth.auth ? 'grid-header': ''}>
-        <h1>CRM Client Manager</h1>
+        <h1>CRM Business</h1>
         {auth.auth ? (
           <button type="button" onClick={logout} className='btn bg-red btn-text-space btn-logout' >
             <span className='span-text'>LOGOUT</span>
