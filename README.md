@@ -1,7 +1,7 @@
 # CRM MERN Project (Frontend).
 
 ### About Project
-This project is a basic Customer Relationship Management that manages the products, the information of the clients and the orders that they have made. Only an already registered user who has the administrator role can add a new user and delete it.
+This project is a basic Customer Relationship Management that manages the products, the information of the clients and the orders that they have made. Only an already registered user can add a new user, new client, new orders and delete them.
 
 * ### Single Page Application (SPA)
 
