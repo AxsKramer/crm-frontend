@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const SubmitButton = ({value, ...otherprops}) => <input 
   type='submit'
@@ -7,4 +7,4 @@ const SubmitButton = ({value, ...otherprops}) => <input
   {...otherprops}
 />
 
-export default SubmitButton
+export default SubmitButton;

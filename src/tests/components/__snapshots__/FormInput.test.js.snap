@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing of <FormInput /> should be displayed correctly 1`] = `
+<div
+  className="field"
+>
+  <label
+    htmlFor={1}
+  >
+    Project
+  </label>
+  <input
+    id={1}
+    name="project"
+    onChange={[Function]}
+    placeholder="Project Name"
+    type="text"
+    value="MERN"
+  />
+</div>
+`;

@@ -47,6 +47,11 @@ const Login = () => {
           id='password'
           value={credentials.password}
         />
+        <div className='login-option'>
+          <p>This is a demo, please login with admin user.</p>
+          <p>Email: admin@correo.com  Password: 123456</p>
+          <p>When you are logged into, you can create a new user and then login with the new user.</p>
+        </div>
         <input type="submit" value="LOGIN" className="btn btn-block bg-blue" />
       </Form>
     </div>

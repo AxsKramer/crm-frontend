@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing of <Menu /> should be displayed correctly 1`] = `
+<nav
+  className="nav-menu"
+>
+  <NavLink
+    activeStyle={
+      Object {
+        "color": "white",
+        "fontWeight": "bold",
+      }
+    }
+    to="/home"
+  >
+    <i
+      className="fas fa-house-user icon"
+    />
+    <span
+      title="Home"
+    >
+       Home
+    </span>
+  </NavLink>
+  <NavLink
+    activeStyle={
+      Object {
+        "color": "white",
+        "fontWeight": "bold",
+      }
+    }
+    to="users"
+  >
+    <i
+      className="fas fa-user-plus icon"
+    />
+    <span
+      title="New User"
+    >
+      New user
+    </span>
+  </NavLink>
+  <NavLink
+    activeStyle={
+      Object {
+        "color": "white",
+        "fontWeight": "bold",
+      }
+    }
+    to="/clients"
+  >
+    <i
+      className="fas icon fa-users"
+    />
+    <span
+      title="Clients"
+    >
+      Clients
+    </span>
+  </NavLink>
+  <NavLink
+    activeStyle={
+      Object {
+        "color": "white",
+        "fontWeight": "bold",
+      }
+    }
+    to="/products"
+  >
+    <i
+      className="fas icon fa-boxes"
+    />
+    <span
+      title="Products"
+    >
+      Products
+    </span>
+  </NavLink>
+  <NavLink
+    activeStyle={
+      Object {
+        "color": "white",
+        "fontWeight": "bold",
+      }
+    }
+    to="/orders"
+  >
+    <i
+      className="far icon fa-copy"
+    />
+    <span
+      title="Orders"
+    >
+      Orders
+    </span>
+  </NavLink>
+  <NavLink
+    activeStyle={
+      Object {
+        "color": "white",
+        "fontWeight": "bold",
+      }
+    }
+    to="/user"
+  >
+    <i
+      className="fas icon fa-user-cog"
+    />
+    <span
+      title="Settings"
+    >
+      Settings
+    </span>
+  </NavLink>
+  <NavLink
+    activeStyle={
+      Object {
+        "color": "white",
+        "fontWeight": "bold",
+      }
+    }
+    to="/restore"
+  >
+    <i
+      className="fas fa-trash-restore icon"
+    />
+    <span
+      title="Settings"
+    >
+      Restore
+    </span>
+  </NavLink>
+</nav>
+`;

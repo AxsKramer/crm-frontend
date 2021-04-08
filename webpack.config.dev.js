@@ -20,7 +20,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /tests/, /__mocks__/, /coverage/],
         use: {
           loader: 'babel-loader',
           options: {

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing <SubmitButton /> should be displayed correctly 1`] = `
+<input
+  className="btn btn-block bg-blue"
+  type="submit"
+  value="Hello World"
+/>
+`;
